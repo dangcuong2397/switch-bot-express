@@ -1,7 +1,4 @@
 [build]
   functions = "functions"
-[build.environment]
-  SILENCE_EMPTY_LAMBDA_WARNING = "true"
-  CONTEXT = "production"
 [dev]
   publish = "dist"

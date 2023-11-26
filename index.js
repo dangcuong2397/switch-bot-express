@@ -12,6 +12,8 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+let timeout = null;
+
 const espDevices = ["00AA70E2"];
 const eventOptions = ["click", "hold"];
 const event = {};
@@ -47,6 +49,13 @@ app.patch("/devices/event/:deviceId", (req, res) => {
   event[deviceId] = newEvent;
 
   res.status(200).send();
+
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+  timeout = setTimeout(() => {
+    event[deviceId] = "";
+  }, 3 * 60 * 1000);
 });
 
 app.listen(port, () => {

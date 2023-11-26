@@ -13,7 +13,7 @@ espDevices.forEach((item) => {
   event[item] = "";
 });
 
-router.get("/devices/event", (req, res) => {
+router.get("/", (req, res) => {
   const deviceId = req.query.device_id;
   if (!espDevices.includes(deviceId)) {
     res.status(400).send("");

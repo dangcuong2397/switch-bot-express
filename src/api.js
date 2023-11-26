@@ -3,8 +3,6 @@ const cors = require("cors");
 const serverless = require("serverless-http");
 
 const app = express();
-app.set("view engine", "ejs");
-app.set("views", "app/views");
 app.use(cors());
 
 const router = express.Router();
@@ -16,10 +14,6 @@ const eventOptions = ["click", "hold"];
 const event = {};
 espDevices.forEach((item) => {
   event[item] = "";
-});
-
-router.get("/", (req, res) => {
-  res.render("index");
 });
 
 router.get("/devices/event", (req, res) => {
@@ -54,12 +48,6 @@ router.get("/devices/event/:deviceId", (req, res) => {
     event[deviceId] = "";
   }, 3 * 60 * 1000);
 });
-
-// router.get("/", (req, res) => {
-//   res.json({
-//     hello: "hi!",
-//   });
-// });
 
 app.use(`/.netlify/functions/api`, router);
 

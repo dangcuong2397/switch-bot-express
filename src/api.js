@@ -46,6 +46,12 @@ router.get("/devices/event/:deviceId", (req, res) => {
   }, 3 * 60 * 1000);
 });
 
+router.get("/", (req, res) => {
+  res.json({
+    hello: "hi!",
+  });
+});
+
 app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
